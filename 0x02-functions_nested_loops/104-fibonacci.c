@@ -1,22 +1,45 @@
 #include <stdio.h>
 
 /**
- * main - Prints the sum off all multiples of 3 or 5 up to 1024
- * Return: Always (Success)
+ * main - Prints the first 98 Fibonacci numbers, starting with
+ * 1 and 2, separated by a comma followed by a space.
  */
 
 int main(void)
 {
-	int i, z = 0;
+	int count;
+	unsigned long fib1 = 0, fib2 = 1, sum;
+	unsigned long fib1_half1, fib1_half2, fib2_half1, fib2_half2;
+	unsigned long half1, half2;
 
-	while (i < 1024)
+	for (count = 0; count < 92; count++)
 	{
-	if ((i % 3 == 0) || (i % 5 == 0))
+	sum = fib1 + fib2;
+	printf("%lu, ", sum);
+	fib1 = fib2;
+	fib2 = sum;
+	}
+	fib1_half1 = fib1 / 1000000000;
+	fib2_half1 = fib2 / 1000000000;
+	fib1_half2 = fib1 % 1000000000;
+	fib2_half2 = fib2 % 1000000000;
+	for (count = 93; count < 99; count++)
 	{
-	z += i;
+	half1 = fib1_half1 + fib2_half1;
+	half2 = fib1_half2 + fib2_half2;
+	if (fib1_half2 + fib2_half2 > 9999999999)
+	{
+	half1 += 1;
+	half2 %= 1000000000;
 	}
-	i++;
+	printf("%lulu", half1, half2);
+	if (count != 98)
+	printf(", ");
+	fib1_half1 = fib2_half1;
+	fib1_half2 = fib2_half2;
+	fib2_half1 = half1;
+	fib2_half2 = half2;
 	}
-	printf("%d\n", z);
+	printf("\n");
 	return (0);
 }
